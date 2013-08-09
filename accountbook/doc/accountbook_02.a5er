@@ -1,0 +1,248 @@
+﻿# A5:ER FORMAT:07
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  http://www.wind.sannet.ne.jp/m_matsu/developer/a5m2/
+
+[Manager]
+ProjectName=家計簿
+Author=塚本翔一
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=0
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=8
+PaperSize=A4Portrait
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+ShowTag=1
+
+[Relation]
+Entity1=username_table
+Entity2=passwords_table
+RelationType1=2
+RelationType2=2
+Fields1=user_id
+Fields2=user_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5000,5000,4937,R,R
+Dependence=1
+Caption=
+PName=
+ModifiedDateTime=20130519200407
+LineMode=0
+Bar1=500
+Bar2=500
+Bar3=494
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=username_table
+Entity2=payment_table
+RelationType1=2
+RelationType2=4
+Fields1=user_id
+Fields2=user_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5000,5000,5000,R,R
+Dependence=1
+Caption=
+PName=
+ModifiedDateTime=20130519200347
+LineMode=0
+Bar1=500
+Bar2=500
+Bar3=500
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=passwords_table
+LName=パスワード表
+Comment=ユーザIDとそのユーザのパスワードのハッシュ値が入る
+TableOption=
+Page=MAIN
+Left=1000
+Top=350
+Field="ユーザID","user_id","@CHAR(4)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="パスワード","passwords","@VARCHAR(12)","NOT NULL",,"","パスワードのハッシュ値が入る",$FFFFFFFF,""
+Index==0,user_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130521100912
+Position="MAIN",1000,350
+
+[Entity]
+PName=username_table
+LName=ユーザ名表
+Comment=
+TableOption=
+Page=MAIN
+Left=1000
+Top=100
+Field="メール連絡先","Email-adress","@VARCHAR(30)","NOT NULL",,"","",$FFFFFFFF,""
+Field="ユーザ名","user_name","@VARCHAR(12)","NOT NULL",,"","",$FFFFFFFF,""
+Field="ユーザID","user_id","@CHAR(4)","NOT NULL",0,"","",$FFFFFFFF,""
+Index==0,user_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130521100856
+Position="MAIN",1000,100
+
+[Relation]
+Entity1=context_table
+Entity2=account_table
+RelationType1=2
+RelationType2=3
+Fields1=context_id
+Fields2=context_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5000,5000,5000,R,R
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=500
+Bar2=500
+Bar3=500
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=context_table
+LName=買い物理由表
+Comment=
+TableOption=
+Page=MAIN
+Left=600
+Top=500
+Field="理由ID","context_id","@CHAR(3)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="買い物理由","context","@VARCHAR(10)","NOT NULL",,"","",$FFFFFFFF,""
+Index==0,context_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130519194759
+Position="MAIN",600,500
+
+[Relation]
+Entity1=payment_table
+Entity2=account_table
+RelationType1=2
+RelationType2=4
+Fields1=payment_id
+Fields2=payment_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5000,5000,5124,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20130513175512
+LineMode=0
+Bar1=500
+Bar2=500
+Bar3=512
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=item-type_table
+Entity2=account_table
+RelationType1=2
+RelationType2=4
+Fields1=item-type_id
+Fields2=item-type_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5000,5000,4850,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20130513175455
+LineMode=0
+Bar1=500
+Bar2=500
+Bar3=485
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=payment_table
+LName=支払方法表
+Comment=ユーザごとの支払方法を管理する。支払方法はユーザIDと支払IDで一意に決まる。
+TableOption=
+Page=MAIN
+Left=600
+Top=100
+Field="支払ID","payment_id","@CHAR(3)","NOT NULL",1,"","",$FFFFFFFF,""
+Field="ユーザID","user_id","@CHAR(4)","NOT NULL",0,"","",$FFFFFFFF,""
+Field="支払方法","payment-options","@VARCHAR(10)","NOT NULL",,"","ユーザごとの支払方法が入る",$FFFFFFFF,""
+Index==0,user_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130521100830
+Position="MAIN",600,100
+
+[Entity]
+PName=item-type_table
+LName=分類表
+Comment=
+TableOption=
+Page=MAIN
+Left=600
+Top=300
+Field="分類ID","item-type_id","@CHAR(3)","NOT NULL",0,"","商品分類のID",$FFFFFFFF,""
+Field="分類","item-type","@VARCHAR(10)","NOT NULL",,"","商品の分類",$FFFFFFFF,""
+Index==0,item-type_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130517151711
+Position="MAIN",600,300,145,71
+
+[Entity]
+PName=account_table
+LName=買い物表
+Comment=買い物コードを主キーとして、一回の会計に付き一つのタプルを作る
+TableOption=
+Page=MAIN
+Left=100
+Top=200
+Field="買い物コード","account_code","@CHAR(10)","NOT NULL",0,"","10桁の番号",$FFFFFFFF,""
+Field="日付","date","@DATE","NOT NULL",1,"","買い物をした日付",$FFFFFFFF,""
+Field="店名","store_name","@VARCHAR(30)","NOT NULL",,"","買い物をした店の名前",$FFFFFFFF,""
+Field="理由ID","context_id","@CHAR(3)","NOT NULL",,"","買い物をした理由",$FFFFFFFF,""
+Field="支払ID","payment_id","@CHAR(3)","NOT NULL",,"","会計の支払方法のID",$FFFFFFFF,""
+Field="分類ID","item-type_id","@CHAR(3)","NOT NULL",,"","商品分類のID",$FFFFFFFF,""
+Field="合計金額","account","@DECIMAL(10)","NOT NULL",,"","買い物の合計金額",$FFFFFFFF,""
+Index==0,date
+Index==0,account_code
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20130521100717
+Position="MAIN",100,200,228,267
