@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Specify a JDBC datasource -->
+    <Resource name="jdbc/testdb" auth="Container"
+        type="javax.sql.DataSource" username="accountbook" password="accountbook"
+        driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://localhost:5432/accountbookdb"
+        maxActive="10" maxIdle="4" />
+</Context>
